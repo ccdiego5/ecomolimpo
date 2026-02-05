@@ -69,6 +69,11 @@ final class Ecomolimpo_Widgets {
      * Initialize the plugin
      */
     public function init() {
+        // Load admin panel
+        if (is_admin()) {
+            require_once(__DIR__ . '/admin/class-admin.php');
+        }
+
         // Check if Elementor installed and activated
         if (!did_action('elementor/loaded')) {
             add_action('admin_notices', [$this, 'admin_notice_missing_main_plugin']);
@@ -157,11 +162,19 @@ final class Ecomolimpo_Widgets {
      * Register Widgets
      */
     public function register_widgets($widgets_manager) {
-        // Include Widget files
-        require_once(__DIR__ . '/widgets/countdown-timer.php');
+        // Get active widgets
+        $active_widgets = get_option('ecomolimpo_active_widgets', []);
+        
+        // If empty, activate all by default
+        if (empty($active_widgets)) {
+            $active_widgets = ['countdown_timer' => true];
+        }
 
-        // Register Widgets
-        $widgets_manager->register(new \Ecomolimpo_Countdown_Timer_Widget());
+        // Countdown Timer Widget
+        if (isset($active_widgets['countdown_timer']) && $active_widgets['countdown_timer']) {
+            require_once(__DIR__ . '/widgets/countdown-timer.php');
+            $widgets_manager->register(new \Ecomolimpo_Countdown_Timer_Widget());
+        }
     }
 
     /**
