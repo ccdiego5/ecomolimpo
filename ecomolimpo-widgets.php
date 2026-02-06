@@ -205,6 +205,12 @@ final class Ecomolimpo_Widgets {
             require_once(__DIR__ . '/widgets/ticket-card.php');
             $widgets_manager->register(new \Ecomolimpo_Ticket_Card_Widget());
         }
+
+        // Social Proof Widget
+        if (isset($active_widgets['social_proof']) && $active_widgets['social_proof']) {
+            require_once(__DIR__ . '/widgets/social-proof.php');
+            $widgets_manager->register(new \Ecomolimpo_Social_Proof_Widget());
+        }
     }
 
     /**
@@ -255,6 +261,14 @@ final class Ecomolimpo_Widgets {
         wp_enqueue_style(
             'ecomolimpo-ticket-card',
             plugins_url('assets/css/widgets/ticket-card.css', __FILE__),
+            [],
+            self::VERSION
+        );
+
+        // Social Proof
+        wp_enqueue_style(
+            'ecomolimpo-social-proof',
+            plugins_url('assets/css/widgets/social-proof.css', __FILE__),
             [],
             self::VERSION
         );

@@ -1,0 +1,41 @@
+/* ================================
+   SOCIAL PROOF WIDGET
+   ================================ */
+
+.ecomolimpo-social-proof-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ecomolimpo-social-avatars {
+    display: flex;
+    align-items: center;
+}
+
+.ecomolimpo-social-avatar {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, z-index 0.3s;
+}
+
+.ecomolimpo-social-avatar:hover {
+    z-index: 10;
+    transform: translateY(-3px);
+}
+
+.ecomolimpo-social-avatar img {
+    border-radius: 50%;
+    object-fit: cover;
+    border-style: solid;
+    display: block;
+}
+
+.ecomolimpo-social-text {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.ecomolimpo-social-highlight {
+    font-weight: 800;
+}

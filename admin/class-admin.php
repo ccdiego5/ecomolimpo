@@ -419,6 +419,18 @@ class Ecomolimpo_Widgets_Admin {
                     'Número, título y descripción',
                     'Totalmente responsive'
                 ]
+            ],
+            'social_proof' => [
+                'title' => 'Social Proof',
+                'description' => 'Muestra avatares superpuestos con texto de prueba social',
+                'icon' => 'dashicons-groups',
+                'features' => [
+                    'Avatares ilimitados',
+                    'Superposición personalizable',
+                    'Texto destacado',
+                    'Diseño flexible',
+                    'Totalmente responsive'
+                ]
             ]
         ];
     }
