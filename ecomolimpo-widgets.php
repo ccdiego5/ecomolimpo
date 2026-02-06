@@ -31,7 +31,7 @@ final class Ecomolimpo_Widgets {
     /**
      * Plugin Version
      */
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.2';
 
     /**
      * Minimum Elementor Version
@@ -211,6 +211,12 @@ final class Ecomolimpo_Widgets {
             require_once(__DIR__ . '/widgets/social-proof.php');
             $widgets_manager->register(new \Ecomolimpo_Social_Proof_Widget());
         }
+
+        // FAQ Accordion Widget
+        if (isset($active_widgets['faq_accordion']) && $active_widgets['faq_accordion']) {
+            require_once(__DIR__ . '/widgets/faq-accordion.php');
+            $widgets_manager->register(new \Ecomolimpo_FAQ_Accordion_Widget());
+        }
     }
 
     /**
@@ -272,6 +278,14 @@ final class Ecomolimpo_Widgets {
             [],
             self::VERSION
         );
+
+        // FAQ Accordion
+        wp_enqueue_style(
+            'ecomolimpo-faq-accordion',
+            plugins_url('assets/css/widgets/faq-accordion.css', __FILE__),
+            [],
+            self::VERSION
+        );
     }
 
     /**
@@ -281,6 +295,14 @@ final class Ecomolimpo_Widgets {
         wp_register_script(
             'ecomolimpo-countdown-timer',
             plugins_url('assets/js/countdown-timer.js', __FILE__),
+            ['jquery'],
+            self::VERSION,
+            true
+        );
+
+        wp_register_script(
+            'ecomolimpo-faq-accordion',
+            plugins_url('assets/js/faq-accordion.js', __FILE__),
             ['jquery'],
             self::VERSION,
             true

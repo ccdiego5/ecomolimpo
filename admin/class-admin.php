@@ -431,6 +431,18 @@ class Ecomolimpo_Widgets_Admin {
                     'Diseño flexible',
                     'Totalmente responsive'
                 ]
+            ],
+            'faq_accordion' => [
+                'title' => 'FAQ Accordion Pro',
+                'description' => 'Acordeón de preguntas frecuentes con animación suave',
+                'icon' => 'dashicons-list-view',
+                'features' => [
+                    'Animación smooth (suave)',
+                    'Items ilimitados',
+                    'Estilo oscuro/moderno',
+                    'Icono animado (+ a x)',
+                    'Totalmente personalizable'
+                ]
             ]
         ];
     }

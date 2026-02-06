@@ -1,0 +1,65 @@
+/* ================================
+   FAQ ACCORDION WIDGET
+   ================================ */
+
+.ecomolimpo-faq-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ecomolimpo-faq-item {
+    border: 1px solid #333;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: #050505;
+}
+
+.ecomolimpo-faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.ecomolimpo-faq-question {
+    font-weight: 600;
+    line-height: 1.4;
+    margin-right: 15px;
+}
+
+.ecomolimpo-faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Estado Activo */
+.ecomolimpo-faq-item.active .ecomolimpo-faq-icon {
+    transform: rotate(45deg); /* Convierte el + en x */
+}
+
+/* Contenido (Animación Smooth) */
+.ecomolimpo-faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    opacity: 0;
+    /* Padding must be 0 here to allow full collapse */
+    padding: 0 !important; 
+}
+
+.ecomolimpo-faq-item.active .ecomolimpo-faq-content {
+    /* max-height is set by JS */
+    opacity: 1;
+}
+
+.ecomolimpo-faq-content-inner {
+    padding-top: 10px; /* Espacio extra entre título y contenido */
+    line-height: 1.6;
+}
