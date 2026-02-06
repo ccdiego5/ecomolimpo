@@ -371,6 +371,54 @@ class Ecomolimpo_Widgets_Admin {
                     'Totalmente personalizable',
                     'Responsive'
                 ]
+            ],
+            'live_event' => [
+                'title' => 'Live Event Banner',
+                'description' => 'Banner de evento en vivo con punto rojo parpadeante',
+                'icon' => 'dashicons-megaphone',
+                'features' => [
+                    'Punto rojo animado',
+                    'Texto personalizable',
+                    'Totalmente responsive',
+                    'Múltiples opciones de estilo',
+                    'Fácil de usar'
+                ]
+            ],
+            'video_player' => [
+                'title' => 'Video Player Avanzado',
+                'description' => 'Reproductor de video mejorado con Plyr - soporta YouTube, Vimeo y MP4',
+                'icon' => 'dashicons-video-alt3',
+                'features' => [
+                    'Soporte YouTube, Vimeo y MP4',
+                    'Interfaz moderna con Plyr',
+                    'Controles personalizables',
+                    'Autoplay y loop',
+                    'Imagen de portada personalizable'
+                ]
+            ],
+            'button_animated' => [
+                'title' => 'Botón Animado',
+                'description' => 'Botón con borde animado parpadeante para llamadas a la acción',
+                'icon' => 'dashicons-admin-links',
+                'features' => [
+                    'Borde parpadeante personalizable',
+                    'Velocidad de animación ajustable',
+                    'Intensidad de glow configurable',
+                    'Texto y subtítulo',
+                    'Totalmente personalizable'
+                ]
+            ],
+            'ticket_card' => [
+                'title' => 'Tarjeta Ticket',
+                'description' => 'Tarjeta con forma de ticket/boleto con imagen de fondo y animación',
+                'icon' => 'dashicons-tickets-alt',
+                'features' => [
+                    'Forma de ticket con bordes dentados',
+                    'Imagen de fondo personalizable',
+                    'Animación de rotación 3D sutil',
+                    'Número, título y descripción',
+                    'Totalmente responsive'
+                ]
             ]
         ];
     }
@@ -380,14 +428,28 @@ class Ecomolimpo_Widgets_Admin {
      */
     private function get_active_widgets() {
         $active = get_option('ecomolimpo_active_widgets', []);
+        $available_widgets = $this->get_available_widgets();
+        $updated = false;
         
         // Si está vacío, activar todos por defecto
         if (empty($active)) {
-            $widgets = $this->get_available_widgets();
             $active = [];
-            foreach ($widgets as $widget_id => $widget) {
+            foreach ($available_widgets as $widget_id => $widget) {
                 $active[$widget_id] = true;
             }
+            $updated = true;
+        } else {
+            // Verificar si hay widgets nuevos y agregarlos como activos
+            foreach ($available_widgets as $widget_id => $widget) {
+                if (!isset($active[$widget_id])) {
+                    $active[$widget_id] = true;
+                    $updated = true;
+                }
+            }
+        }
+        
+        // Guardar si hubo cambios
+        if ($updated) {
             update_option('ecomolimpo_active_widgets', $active);
         }
         

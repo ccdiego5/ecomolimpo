@@ -1,6 +1,6 @@
 === Ecomolimpo Widgets ===
 Contributors: Diego Cárdenas
-Tags: elementor, widgets, countdown, timer, ecomolimpo
+Tags: elementor, widgets, countdown, timer, video, plyr, live event, button, animated, ecomolimpo
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -17,6 +17,9 @@ Colección de widgets personalizados para Elementor desarrollados para Ecomolimp
 = Widgets Incluidos =
 
 * **Contador Regresivo** - Contador personalizable con tiempo aleatorio que se mantiene en localStorage
+* **Live Event Banner** - Banner de evento en vivo con punto rojo parpadeante
+* **Video Player Avanzado** - Reproductor de video mejorado con Plyr (YouTube, Vimeo, MP4)
+* **Botón Animado** - Botón con borde parpadeante para llamadas a la acción
 
 = Características del Contador Regresivo =
 
@@ -28,6 +31,36 @@ Colección de widgets personalizados para Elementor desarrollados para Ecomolimp
 * 📱 Completamente responsive
 * ⚡ Rendimiento optimizado
 * 🔄 Se reinicia automáticamente al llegar a cero
+
+= Características del Live Event Banner =
+
+* 🔴 Punto rojo parpadeante animado
+* 📝 Texto personalizable (LIVE y mensaje del evento)
+* 🎨 Totalmente personalizable: colores, tipografía, espaciados
+* 📱 Completamente responsive
+* ⚡ Animación CSS optimizada
+
+= Características del Video Player Avanzado =
+
+* 🎬 Soporte para YouTube, Vimeo y archivos MP4
+* 🎨 Interfaz moderna con Plyr
+* ⚙️ Controles personalizables
+* 🔄 Autoplay, loop y silenciado
+* 🖼️ Imagen de portada personalizable
+* 📐 Múltiples relaciones de aspecto (16:9, 4:3, 21:9, 1:1)
+* 🎨 Bordes, sombras y estilos personalizables
+* ⌨️ Soporte completo de teclado
+
+= Características del Botón Animado =
+
+* ✨ Borde parpadeante con efecto de glow
+* ⚡ Velocidad de animación personalizable (100ms - 2000ms)
+* 💫 Intensidad de glow ajustable
+* 📝 Texto principal y subtítulo
+* 🎨 Colores y tipografía personalizables
+* 🔗 Soporte completo de enlaces
+* 📱 Completamente responsive
+* 🎨 Bordes redondeados y padding personalizable
 
 = Personalización Completa =
 
@@ -74,10 +107,15 @@ Sí, todos los widgets son completamente responsive.
 
 = 1.0.0 - 2025-02-05 =
 * Lanzamiento inicial
-* Widget de Contador Regresivo
-* Sistema de localStorage para persistencia
+* Widget de Contador Regresivo con localStorage
+* Widget de Live Event Banner
+* Widget de Video Player Avanzado con Plyr
+* Widget de Botón Animado con borde parpadeante
+* Panel de administración completo
+* Sistema de activación/desactivación de widgets
 * Controles completos de personalización
-* Soporte responsive
+* Soporte responsive completo
+* Template de efecto láser para fondos
 
 == Upgrade Notice ==
 

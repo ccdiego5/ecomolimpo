@@ -168,13 +168,231 @@ El widget es completamente responsive:
 - **Tablet:** Números medianos
 - **Mobile:** Números más pequeños, espaciado reducido
 
-## 🚀 Próximos Widgets
+## 🎥 Widget de Video Player Avanzado (con Plyr)
 
-Este es el primer widget. Se pueden agregar más widgets en el futuro:
-- Botones personalizados
-- Tarjetas de servicios
-- Testimonios
-- Y más...
+Un reproductor de video moderno y mejorado que soporta YouTube, Vimeo y archivos MP4 alojados.
+
+### ✨ Características
+
+- 🎬 Soporte para **YouTube**, **Vimeo** y **MP4 alojado**
+- 🎨 Interfaz moderna y personalizable con **Plyr**
+- ⚙️ Controles completos y personalizables
+- 🔄 Autoplay, loop y silenciado
+- 🖼️ Imagen de portada personalizable
+- 📐 Múltiples relaciones de aspecto (16:9, 4:3, 21:9, 1:1)
+- 🎨 Bordes, sombras y estilos personalizables
+
+### 🎯 Cómo Usar
+
+#### 1. Agregar el Widget
+
+1. Edita tu página con Elementor
+2. Busca **"Video Player Avanzado"** en la categoría **"Ecomolimpo Widgets"**
+3. Arrastra el widget a tu página
+
+#### 2. Configuración
+
+##### Pestaña "Contenido"
+
+**Tipo de Video:**
+- **YouTube:** Pega la URL completa de YouTube
+  - Ejemplo: `https://www.youtube.com/watch?v=bTqVqk7FSmY`
+- **Vimeo:** Pega la URL completa de Vimeo
+  - Ejemplo: `https://vimeo.com/76979871`
+- **Video Alojado (MP4):** Sube tu archivo de video MP4
+
+**Imagen de Portada:**
+- Sube una imagen personalizada que se muestra antes de reproducir el video
+
+##### Opciones del Reproductor
+
+- **Reproducción Automática:** Inicia el video automáticamente al cargar la página
+- **Silenciado por Defecto:** El video comienza sin sonido
+- **Repetir Video:** El video se reproduce en bucle infinito
+- **Mostrar Controles:** Muestra/oculta los controles del reproductor
+- **Click para Reproducir:** Permite reproducir haciendo clic en el video
+
+##### Pestaña "Estilos"
+
+**Relación de Aspecto:**
+- 16:9 (YouTube estándar)
+- 4:3 (Clásico)
+- 21:9 (Ultra wide)
+- 1:1 (Cuadrado)
+- Personalizado (altura automática)
+
+**Bordes y Sombras:**
+- Agrega bordes personalizados
+- Aplica radio a las esquinas
+- Añade sombras para profundidad
+
+### 📋 Ejemplo de Uso: Video de YouTube
+
+**Configuración:**
+- **Tipo de Video:** YouTube
+- **URL:** `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+- **Reproducción Automática:** No
+- **Mostrar Controles:** Sí
+- **Relación de Aspecto:** 16:9
+
+**Estilos:**
+- **Radio del Borde:** 12px en todas las esquinas
+- **Sombra:** Box shadow suave para profundidad
+
+### 🎨 Ventajas sobre el Widget Nativo de WordPress
+
+1. **Interfaz Moderna:** Plyr ofrece un diseño mucho más atractivo
+2. **Soporte Multi-Plataforma:** YouTube, Vimeo y MP4 en un solo widget
+3. **Más Controles:** Configuración de velocidad, calidad y más
+4. **Responsive Superior:** Se adapta perfectamente a todos los dispositivos
+5. **Teclado:** Soporte completo para atajos de teclado (espacio, flechas, etc.)
+6. **Accesibilidad:** Mejor soporte para lectores de pantalla
+
+## 🚀 Widgets Disponibles
+
+- ✅ **Contador Regresivo** - Temporizador con localStorage
+- ✅ **Live Event Banner** - Banner de evento en vivo
+- ✅ **Video Player Avanzado** - Reproductor con Plyr
+- ✅ **Botón Animado** - Botón con borde parpadeante
+
+## ✨ Widget de Botón Animado
+
+Un botón llamativo con borde parpadeante perfecto para llamadas a la acción (CTA).
+
+### 🎯 Características
+
+- ✨ **Borde parpadeante** con efecto de glow personalizable
+- ⚡ **Velocidad ajustable** de 100ms a 2000ms
+- 💫 **Intensidad de glow** configurable
+- 📝 Texto principal + subtítulo opcional
+- 🎨 Totalmente personalizable
+- 🔗 Soporte completo de enlaces
+- 📱 Completamente responsive
+
+### 🎯 Cómo Usar
+
+#### 1. Agregar el Widget
+
+1. Edita tu página con Elementor
+2. Busca **"Botón Animado"** en la categoría **"Ecomolimpo Widgets"**
+3. Arrastra el widget a tu página
+
+#### 2. Configuración
+
+##### Pestaña "Contenido"
+
+**Texto del Botón:**
+- Texto principal que aparece en el botón
+- Ejemplo: "CLAIM YOUR FREE SPOT"
+
+**Subtítulo:**
+- Texto secundario debajo del principal (opcional)
+- Ejemplo: "Sunday December 28th @6PM CET"
+
+**Enlace:**
+- URL a la que redirige el botón
+- Opciones para abrir en nueva ventana
+- Atributo nofollow disponible
+
+**Alineación:**
+- Izquierda, Centro o Derecha
+- Responsive (diferente alineación por dispositivo)
+
+##### Pestaña "Estilos del Botón"
+
+**Color de Fondo:**
+- Color del botón
+- Predeterminado: Cyan (#00D9FF)
+
+**Tipografía del Texto:**
+- Fuente, tamaño, peso, transformación
+- Totalmente personalizable
+
+**Color del Texto:**
+- Color del texto principal
+- Predeterminado: Negro (#000000)
+
+**Padding:**
+- Espaciado interno del botón
+- Control independiente por lado
+
+**Radio del Borde:**
+- Redondeo de las esquinas
+- Predeterminado: 50px (totalmente redondeado)
+
+##### Pestaña "Estilos del Subtítulo"
+
+**Tipografía:**
+- Fuente, tamaño, peso para el subtítulo
+
+**Color:**
+- Color del subtítulo
+
+**Margen Superior:**
+- Espacio entre el texto principal y el subtítulo
+
+##### Pestaña "Animación del Borde"
+
+**Grosor del Borde:**
+- Ancho del borde en píxeles (1px - 10px)
+- Predeterminado: 2px
+
+**Color del Borde:**
+- Color del borde animado
+- Predeterminado: Negro (#000000)
+
+**Velocidad de Animación:**
+- Duración del ciclo de parpadeo
+- Rango: 100ms - 2000ms
+- Predeterminado: 500ms (como en The Final Protocol)
+
+**Intensidad del Glow:**
+- Qué tan brillante es el efecto de glow
+- Rango: 0px - 30px
+- Predeterminado: 15px
+
+### 📋 Ejemplo de Uso: Botón Estilo "Claim Your Spot"
+
+**Configuración:**
+- **Texto:** "CLAIM YOUR FREE SPOT"
+- **Subtítulo:** "Sunday December 28th @6PM CET"
+- **Enlace:** Tu URL de registro
+- **Alineación:** Centro
+
+**Estilos del Botón:**
+- **Color de Fondo:** `#00D9FF` (Cyan)
+- **Color del Texto:** `#000000` (Negro)
+- **Padding:** 20px arriba/abajo, 40px izquierda/derecha
+- **Radio del Borde:** 50px (totalmente redondeado)
+
+**Animación del Borde:**
+- **Grosor:** 2px
+- **Color:** `#000000` (Negro)
+- **Velocidad:** 500ms
+- **Intensidad Glow:** 15px
+
+### 🎨 Ejemplos de Variaciones
+
+#### Botón Rojo Urgente
+- **Fondo:** `#E11D48` (Rojo)
+- **Texto:** `#FFFFFF` (Blanco)
+- **Borde:** `#FFFFFF` (Blanco)
+- **Velocidad:** 300ms (más rápido = más urgencia)
+- **Glow:** 20px (más intenso)
+
+#### Botón Verde Éxito
+- **Fondo:** `#10B981` (Verde)
+- **Texto:** `#FFFFFF` (Blanco)
+- **Borde:** `#FFFFFF` (Blanco)
+- **Velocidad:** 700ms (más lento = más elegante)
+- **Glow:** 12px (más sutil)
+
+#### Botón Morado Premium
+- **Fondo:** `#8F79FA` (Morado)
+- **Texto:** `#FFFFFF` (Blanco)
+- **Borde:** `#EFD915` (Dorado)
+- **Velocidad:** 600ms
+- **Glow:** 18px
 
 ## 📞 Soporte
 

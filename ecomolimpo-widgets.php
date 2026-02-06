@@ -3,7 +3,7 @@
  * Plugin Name: Ecomolimpo Widgets
  * Plugin URI: https://ecomolimpo.com
  * Description: Colección de widgets personalizados para Elementor - Ecomolimpo
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Diego Cárdenas
  * Author URI: https://ecomolimpo.com
  * License: GPL-2.0+
@@ -31,7 +31,7 @@ final class Ecomolimpo_Widgets {
     /**
      * Plugin Version
      */
-    const VERSION = '1.0.0';
+    const VERSION = '1.1.0';
 
     /**
      * Minimum Elementor Version
@@ -167,13 +167,43 @@ final class Ecomolimpo_Widgets {
         
         // If empty, activate all by default
         if (empty($active_widgets)) {
-            $active_widgets = ['countdown_timer' => true];
+            $active_widgets = [
+                'countdown_timer' => true,
+                'live_event' => true,
+                'video_player' => true,
+                'button_animated' => true,
+                'ticket_card' => true
+            ];
         }
 
         // Countdown Timer Widget
         if (isset($active_widgets['countdown_timer']) && $active_widgets['countdown_timer']) {
             require_once(__DIR__ . '/widgets/countdown-timer.php');
             $widgets_manager->register(new \Ecomolimpo_Countdown_Timer_Widget());
+        }
+
+        // Live Event Widget
+        if (isset($active_widgets['live_event']) && $active_widgets['live_event']) {
+            require_once(__DIR__ . '/widgets/live-event.php');
+            $widgets_manager->register(new \Ecomolimpo_Live_Event_Widget());
+        }
+
+        // Video Player Widget
+        if (isset($active_widgets['video_player']) && $active_widgets['video_player']) {
+            require_once(__DIR__ . '/widgets/video-player.php');
+            $widgets_manager->register(new \Ecomolimpo_Video_Player_Widget());
+        }
+
+        // Animated Button Widget
+        if (isset($active_widgets['button_animated']) && $active_widgets['button_animated']) {
+            require_once(__DIR__ . '/widgets/button-animated.php');
+            $widgets_manager->register(new \Ecomolimpo_Button_Animated_Widget());
+        }
+
+        // Ticket Card Widget
+        if (isset($active_widgets['ticket_card']) && $active_widgets['ticket_card']) {
+            require_once(__DIR__ . '/widgets/ticket-card.php');
+            $widgets_manager->register(new \Ecomolimpo_Ticket_Card_Widget());
         }
     }
 
