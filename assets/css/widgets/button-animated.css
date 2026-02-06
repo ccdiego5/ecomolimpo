@@ -1,0 +1,56 @@
+/* ================================
+   ANIMATED BUTTON WIDGET
+   ================================ */
+
+.ecomolimpo-animated-button-wrapper {
+    width: 100%;
+    /* text-align is handled by Elementor control */
+}
+
+.ecomolimpo-animated-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    
+    /* Animation defaults */
+    outline-style: solid;
+    /* outline-width and outline-offset handled by Elementor */
+    outline-color: var(--border-color, #000);
+    animation-name: border-pulse;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.ecomolimpo-animated-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.ecomolimpo-button-text {
+    /* Typography and color handled by Elementor */
+    display: block;
+    line-height: 1.2;
+    z-index: 2;
+}
+
+.ecomolimpo-button-subtitle {
+    /* Typography, color, margin handled by Elementor */
+    display: block;
+    line-height: 1.2;
+    z-index: 2;
+}
+
+@keyframes border-pulse {
+    0%, 100% {
+        outline-color: transparent;
+    }
+    50% {
+        outline-color: var(--border-color, #000);
+    }
+}

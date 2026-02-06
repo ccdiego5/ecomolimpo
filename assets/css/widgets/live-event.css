@@ -1,0 +1,47 @@
+/* ================================
+   LIVE EVENT WIDGET
+   ================================ */
+
+.ecomolimpo-live-event {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.live-dot {
+    display: inline-block;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.live-dot.animate {
+    animation: live-dot-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes live-dot-pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.live-text {
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.event-text {
+    display: inline-block;
+}

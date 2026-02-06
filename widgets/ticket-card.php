@@ -1,6 +1,6 @@
 <?php
 /**
- * Ticket Card Widget
+ * Ticket Cards Grid Widget
  * 
  * @package Ecomolimpo_Widgets
  */
@@ -11,377 +11,195 @@ if (!defined('ABSPATH')) {
 
 class Ecomolimpo_Ticket_Card_Widget extends \Elementor\Widget_Base {
 
-    /**
-     * Get widget name
-     */
-    public function get_name() {
-        return 'ecomolimpo_ticket_card';
-    }
+    public function get_name() { return 'ecomolimpo_ticket_card'; }
+    public function get_title() { return __('Tarjetas Ticket Pro', 'ecomolimpo-widgets'); }
+    public function get_icon() { return 'eicon-gallery-grid'; }
+    public function get_categories() { return ['ecomolimpo']; }
 
-    /**
-     * Get widget title
-     */
-    public function get_title() {
-        return __('Tarjeta Ticket', 'ecomolimpo-widgets');
-    }
-
-    /**
-     * Get widget icon
-     */
-    public function get_icon() {
-        return 'eicon-image-box';
-    }
-
-    /**
-     * Get widget categories
-     */
-    public function get_categories() {
-        return ['ecomolimpo'];
-    }
-
-    /**
-     * Get widget keywords
-     */
-    public function get_keywords() {
-        return ['ticket', 'card', 'tarjeta', 'boleto', 'image'];
-    }
-
-    /**
-     * Register widget controls
-     */
     protected function register_controls() {
-        
-        // ========== CONTENIDO ==========
+        // ========== TARJETAS ==========
         $this->start_controls_section(
-            'content_section',
-            [
-                'label' => __('Contenido', 'ecomolimpo-widgets'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
+            'cards_section',
+            ['label' => __('Tarjetas', 'ecomolimpo-widgets'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]
         );
 
-        $this->add_control(
+        $repeater = new \Elementor\Repeater();
+
+        $repeater->add_control(
             'card_number',
-            [
-                'label' => __('Número', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => '#1',
-                'placeholder' => __('#1', 'ecomolimpo-widgets'),
-            ]
+            ['label' => __('Número', 'ecomolimpo-widgets'), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => '#1']
         );
 
-        $this->add_control(
+        $repeater->add_control(
             'background_image',
-            [
-                'label' => __('Imagen de Fondo', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-            ]
+            ['label' => __('Imagen de Fondo', 'ecomolimpo-widgets'), 'type' => \Elementor\Controls_Manager::MEDIA, 'default' => ['url' => \Elementor\Utils::get_placeholder_image_src()]]
         );
 
-        $this->add_control(
+        $repeater->add_control(
             'title',
-            [
-                'label' => __('Título', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => __('Learn The Truth', 'ecomolimpo-widgets'),
-                'placeholder' => __('Escribe el título', 'ecomolimpo-widgets'),
-            ]
+            ['label' => __('Título', 'ecomolimpo-widgets'), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => __('Learn The Truth', 'ecomolimpo-widgets')]
         );
 
-        $this->add_control(
+        $repeater->add_control(
             'description',
-            [
-                'label' => __('Descripción', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => __('Exposing the truth behind how beginner entrepreneurs struggling rich with AI built Ecom brands in record breaking time.', 'ecomolimpo-widgets'),
-                'placeholder' => __('Escribe la descripción', 'ecomolimpo-widgets'),
-            ]
+            ['label' => __('Descripción', 'ecomolimpo-widgets'), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => __('Exposing the truth behind how beginner entrepreneurs are getting rich...', 'ecomolimpo-widgets')]
+        );
+
+        $repeater->add_control(
+            'link',
+            ['label' => __('Enlace', 'ecomolimpo-widgets'), 'type' => \Elementor\Controls_Manager::URL, 'placeholder' => 'https://...', 'default' => ['url' => '#']]
         );
 
         $this->add_control(
-            'link',
+            'cards_list',
             [
-                'label' => __('Enlace', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => __('https://tu-enlace.com', 'ecomolimpo-widgets'),
+                'label' => __('Lista de Tarjetas', 'ecomolimpo-widgets'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
                 'default' => [
-                    'url' => '#',
+                    ['card_number' => '#1', 'title' => 'Learn The Truth', 'description' => 'Exposing the truth behind how beginner entrepreneurs are getting rich...'],
+                    ['card_number' => '#2', 'title' => 'Work Remotely', 'description' => 'Learn how to work remotely without needing a useless degree...'],
+                    ['card_number' => '#3', 'title' => 'Leave That Hometown', 'description' => 'Finally create the life you deserve and live it on your own terms.'],
                 ],
+                'title_field' => '{{{ title }}}',
             ]
         );
 
         $this->end_controls_section();
 
-        // ========== ESTILOS DE LA TARJETA ==========
+        // ========== LAYOUT ==========
         $this->start_controls_section(
-            'card_style_section',
+            'layout_section',
+            ['label' => __('Layout', 'ecomolimpo-widgets'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]
+        );
+
+        $this->add_responsive_control(
+            'columns',
             [
-                'label' => __('Estilos de la Tarjeta', 'ecomolimpo-widgets'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'label' => __('Columnas', 'ecomolimpo-widgets'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => '3',
+                'tablet_default' => '2',
+                'mobile_default' => '1',
+                'options' => ['1' => '1', '2' => '2', '3' => '3', '4' => '4'],
+                'selectors' => ['{{WRAPPER}} .ecomolimpo-tickets-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);'],
             ]
         );
 
         $this->add_responsive_control(
-            'card_height',
+            'gap',
             [
-                'label' => __('Altura de la Tarjeta', 'ecomolimpo-widgets'),
+                'label' => __('Espacio', 'ecomolimpo-widgets'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 300,
-                        'max' => 800,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 500,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .ecomolimpo-ticket-card' => 'height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'overlay_color',
-            [
-                'label' => __('Color de Overlay', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => 'rgba(0, 0, 0, 0.4)',
-                'selectors' => [
-                    '{{WRAPPER}} .ecomolimpo-ticket-overlay' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'border_color',
-            [
-                'label' => __('Color del Borde', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#FFFFFF',
-                'selectors' => [
-                    '{{WRAPPER}} .ecomolimpo-ticket-card' => '--border-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // ========== ESTILOS DEL NÚMERO ==========
-        $this->start_controls_section(
-            'number_style_section',
-            [
-                'label' => __('Estilos del Número', 'ecomolimpo-widgets'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'number_typography',
-                'selector' => '{{WRAPPER}} .ticket-number',
-            ]
-        );
-
-        $this->add_control(
-            'number_color',
-            [
-                'label' => __('Color', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#FFFFFF',
-                'selectors' => [
-                    '{{WRAPPER}} .ticket-number' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // ========== ESTILOS DEL TÍTULO ==========
-        $this->start_controls_section(
-            'title_style_section',
-            [
-                'label' => __('Estilos del Título', 'ecomolimpo-widgets'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .ticket-title',
-            ]
-        );
-
-        $this->add_control(
-            'title_color',
-            [
-                'label' => __('Color', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#FFFFFF',
-                'selectors' => [
-                    '{{WRAPPER}} .ticket-title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // ========== ESTILOS DE LA DESCRIPCIÓN ==========
-        $this->start_controls_section(
-            'description_style_section',
-            [
-                'label' => __('Estilos de la Descripción', 'ecomolimpo-widgets'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .ticket-description',
-            ]
-        );
-
-        $this->add_control(
-            'description_color',
-            [
-                'label' => __('Color', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#FFFFFF',
-                'selectors' => [
-                    '{{WRAPPER}} .ticket-description' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // ========== ANIMACIÓN ==========
-        $this->start_controls_section(
-            'animation_section',
-            [
-                'label' => __('Animación', 'ecomolimpo-widgets'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'enable_animation',
-            [
-                'label' => __('Activar Animación', 'ecomolimpo-widgets'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Sí', 'ecomolimpo-widgets'),
-                'label_off' => __('No', 'ecomolimpo-widgets'),
-                'return_value' => 'yes',
-                'default' => 'yes',
+                'range' => ['px' => ['max' => 100]],
+                'default' => ['size' => 30],
+                'selectors' => ['{{WRAPPER}} .ecomolimpo-tickets-grid' => 'gap: {{SIZE}}px;'],
             ]
         );
 
         $this->end_controls_section();
     }
 
-    /**
-     * Render widget output on the frontend
-     */
     protected function render() {
         $settings = $this->get_settings_for_display();
-        
-        $animation_class = $settings['enable_animation'] === 'yes' ? 'ticket-animated' : '';
-        
-        $this->add_render_attribute('wrapper', 'class', 'ecomolimpo-ticket-wrapper');
-        
-        $this->add_render_attribute('card', 'class', ['ecomolimpo-ticket-card', $animation_class]);
-        
-        if (!empty($settings['background_image']['url'])) {
-            $this->add_render_attribute('card', 'style', 'background-image: url(' . esc_url($settings['background_image']['url']) . ');');
-        }
-        
-        $link_tag = 'div';
-        $link_attrs = [];
-        
-        if (!empty($settings['link']['url'])) {
-            $link_tag = 'a';
-            $this->add_link_attributes('link', $settings['link']);
-            $link_attrs = $this->get_render_attribute_string('link');
-        }
         ?>
-        <div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
-            <<?php echo $link_tag; ?> <?php echo $link_attrs; ?>>
-                <div <?php echo $this->get_render_attribute_string('card'); ?>>
-                    <div class="ecomolimpo-ticket-overlay"></div>
-                    <div class="ticket-content">
-                        <div class="ticket-header">
-                            <?php if (!empty($settings['card_number'])) : ?>
-                                <span class="ticket-number"><?php echo esc_html($settings['card_number']); ?></span>
-                            <?php endif; ?>
+        <div class="ecomolimpo-tickets-wrapper">
+            <div class="ecomolimpo-tickets-grid">
+                <?php foreach ($settings['cards_list'] as $index => $card) : 
+                    $bg_style = !empty($card['background_image']['url']) ? 'background-image: url(' . esc_url($card['background_image']['url']) . ');' : '';
+                    // Eliminamos el delay para que todas giren igual
+                ?>
+                    <div class="ticket-card-container">
+                        <div class="ticket-shape" style="<?php echo $bg_style; ?>">
+                            <div class="ticket-overlay"></div>
+                            
+                            <!-- Borde Interno SVG (Exacto) -->
+                            <svg class="ticket-border-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 703 1176" preserveAspectRatio="none">
+                                <path fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" vector-effect="non-scaling-stroke" d="M564 12.5C564 5.596 558.404 0 551.5 0S539 5.596 539 12.5v1c0 6.904-5.596 12.5-12.5 12.5S514 20.404 514 13.5v-1C514 5.596 508.404 0 501.5 0S489 5.596 489 12.5v1c0 6.904-5.596 12.5-12.5 12.5S464 20.404 464 13.5v-1C464 5.596 458.404 0 451.5 0S439 5.596 439 12.5v1c0 6.904-5.596 12.5-12.5 12.5S414 20.404 414 13.5v-1C414 5.596 408.404 0 401.5 0S389 5.596 389 12.5v1c0 6.904-5.596 12.5-12.5 12.5S364 20.404 364 13.5v-1C364 5.596 358.404 0 351.5 0S339 5.596 339 12.5v1c0 6.904-5.596 12.5-12.5 12.5S314 20.404 314 13.5v-1C314 5.596 308.404 0 301.5 0S289 5.596 289 12.5v1c0 6.904-5.596 12.5-12.5 12.5S264 20.404 264 13.5v-1C264 5.596 258.404 0 251.5 0S239 5.596 239 12.5v1c0 6.904-5.596 12.5-12.5 12.5S214 20.404 214 13.5v-1C214 5.596 208.404 0 201.5 0S189 5.596 189 12.5v1c0 6.904-5.596 12.5-12.5 12.5S164 20.404 164 13.5v-1C164 5.596 158.404 0 151.5 0S139 5.596 139 12.5v1c0 6.904-5.596 12.5-12.5 12.5S114 20.404 114 13.5v-1.432C114 5.403 108.597 0 101.932 0c-6.614 0-11.91 5.353-12.85 11.9-5.931 41.33-39.944 73.59-82.084 76.832C3.143 89.028 0 92.134 0 96v984c0 3.87 3.143 6.97 6.998 7.27 42.14 3.24 76.153 35.5 82.084 76.83.94 6.55 6.236 11.9 12.85 11.9 6.665 0 12.068-5.4 12.068-12.07v-1.43c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1.43c0 6.67 5.403 12.07 12.068 12.07 6.614 0 11.91-5.35 12.85-11.9 5.931-41.33 39.944-73.59 82.084-76.83 3.855-.3 6.998-3.4 6.998-7.27V96c0-3.866-3.143-6.972-6.998-7.268-42.14-3.24-76.153-35.503-82.084-76.832-.94-6.547-6.236-11.9-12.85-11.9C594.403 0 589 5.403 589 12.068V13.5c0 6.904-5.596 12.5-12.5 12.5S564 20.404 564 13.5v-1ZM26 848a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm26 0a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" />
+                            </svg>
+                            
+                            <!-- Línea de Puntos -->
+                            <div class="ticket-dotted-line"></div>
+
+                            <!-- Contenido -->
+                            <div class="ticket-content-wrapper">
+                                <div class="ticket-top-section">
+                                    <?php if (!empty($card['card_number'])) : ?>
+                                        <div class="ticket-badge">
+                                            <span><?php echo esc_html($card['card_number']); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($card['title'])) : ?>
+                                        <h3 class="ticket-title"><?php echo wp_kses_post($card['title']); ?></h3>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="ticket-bottom-section">
+                                    <?php if (!empty($card['description'])) : ?>
+                                        <p class="ticket-desc"><?php echo esc_html($card['description']); ?></p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            
+                            <!-- Decoraciones -->
+                            <div class="ticket-sparkles">
+                                <span class="sparkle s1">✦</span>
+                                <span class="sparkle s2">✦</span>
+                            </div>
                         </div>
-                        <div class="ticket-body">
-                            <?php if (!empty($settings['title'])) : ?>
-                                <h3 class="ticket-title"><?php echo esc_html($settings['title']); ?></h3>
-                            <?php endif; ?>
-                        </div>
-                        <div class="ticket-footer">
-                            <?php if (!empty($settings['description'])) : ?>
-                                <p class="ticket-description"><?php echo esc_html($settings['description']); ?></p>
-                            <?php endif; ?>
-                        </div>
+                        
+                        <?php if (!empty($card['link']['url'])) : ?>
+                            <a href="<?php echo esc_url($card['link']['url']); ?>" class="ticket-full-link"></a>
+                        <?php endif; ?>
                     </div>
-                    <div class="ticket-stars">
-                        <span class="star star-1">+</span>
-                        <span class="star star-2">+</span>
-                    </div>
-                </div>
-            </<?php echo $link_tag; ?>>
+                <?php endforeach; ?>
+            </div>
         </div>
         <?php
     }
 
-    /**
-     * Render widget output in the editor
-     */
     protected function content_template() {
         ?>
-        <#
-        var animationClass = settings.enable_animation === 'yes' ? 'ticket-animated' : '';
-        var linkTag = settings.link.url ? 'a' : 'div';
-        var bgImage = settings.background_image.url ? 'background-image: url(' + settings.background_image.url + ');' : '';
-        #>
-        <div class="ecomolimpo-ticket-wrapper">
-            <{{{ linkTag }}} href="{{ settings.link.url }}">
-                <div class="ecomolimpo-ticket-card {{ animationClass }}" style="{{ bgImage }}">
-                    <div class="ecomolimpo-ticket-overlay"></div>
-                    <div class="ticket-content">
-                        <div class="ticket-header">
-                            <# if (settings.card_number) { #>
-                                <span class="ticket-number">{{{ settings.card_number }}}</span>
-                            <# } #>
-                        </div>
-                        <div class="ticket-body">
-                            <# if (settings.title) { #>
-                                <h3 class="ticket-title">{{{ settings.title }}}</h3>
-                            <# } #>
-                        </div>
-                        <div class="ticket-footer">
-                            <# if (settings.description) { #>
-                                <p class="ticket-description">{{{ settings.description }}}</p>
-                            <# } #>
+        <div class="ecomolimpo-tickets-wrapper">
+            <div class="ecomolimpo-tickets-grid">
+                <# _.each(settings.cards_list, function(card, index) { 
+                    var bgImage = card.background_image.url ? 'background-image: url(' + card.background_image.url + ');' : '';
+                #>
+                    <div class="ticket-card-container">
+                        <div class="ticket-shape" style="{{ bgImage }}">
+                            <div class="ticket-overlay"></div>
+                            <!-- Borde Interno SVG (Exacto) -->
+                            <svg class="ticket-border-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 703 1176" preserveAspectRatio="none">
+                                <path fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="4" vector-effect="non-scaling-stroke" d="M564 12.5C564 5.596 558.404 0 551.5 0S539 5.596 539 12.5v1c0 6.904-5.596 12.5-12.5 12.5S514 20.404 514 13.5v-1C514 5.596 508.404 0 501.5 0S489 5.596 489 12.5v1c0 6.904-5.596 12.5-12.5 12.5S464 20.404 464 13.5v-1C464 5.596 458.404 0 451.5 0S439 5.596 439 12.5v1c0 6.904-5.596 12.5-12.5 12.5S414 20.404 414 13.5v-1C414 5.596 408.404 0 401.5 0S389 5.596 389 12.5v1c0 6.904-5.596 12.5-12.5 12.5S364 20.404 364 13.5v-1C364 5.596 358.404 0 351.5 0S339 5.596 339 12.5v1c0 6.904-5.596 12.5-12.5 12.5S314 20.404 314 13.5v-1C314 5.596 308.404 0 301.5 0S289 5.596 289 12.5v1c0 6.904-5.596 12.5-12.5 12.5S264 20.404 264 13.5v-1C264 5.596 258.404 0 251.5 0S239 5.596 239 12.5v1c0 6.904-5.596 12.5-12.5 12.5S214 20.404 214 13.5v-1C214 5.596 208.404 0 201.5 0S189 5.596 189 12.5v1c0 6.904-5.596 12.5-12.5 12.5S164 20.404 164 13.5v-1C164 5.596 158.404 0 151.5 0S139 5.596 139 12.5v1c0 6.904-5.596 12.5-12.5 12.5S114 20.404 114 13.5v-1.432C114 5.403 108.597 0 101.932 0c-6.614 0-11.91 5.353-12.85 11.9-5.931 41.33-39.944 73.59-82.084 76.832C3.143 89.028 0 92.134 0 96v984c0 3.87 3.143 6.97 6.998 7.27 42.14 3.24 76.153 35.5 82.084 76.83.94 6.55 6.236 11.9 12.85 11.9 6.665 0 12.068-5.4 12.068-12.07v-1.43c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1c0 6.9 5.596 12.5 12.5 12.5s12.5-5.6 12.5-12.5v-1c0-6.9 5.596-12.5 12.5-12.5s12.5 5.6 12.5 12.5v1.43c0 6.67 5.403 12.07 12.068 12.07 6.614 0 11.91-5.35 12.85-11.9 5.931-41.33 39.944-73.59 82.084-76.83 3.855-.3 6.998-3.4 6.998-7.27V96c0-3.866-3.143-6.972-6.998-7.268-42.14-3.24-76.153-35.503-82.084-76.832-.94-6.547-6.236-11.9-12.85-11.9C594.403 0 589 5.403 589 12.068V13.5c0 6.904-5.596 12.5-12.5 12.5S564 20.404 564 13.5v-1ZM26 848a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm26 0a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm34-8a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm18 8a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" />
+                            </svg>
+                            <div class="ticket-dotted-line"></div>
+
+                            <div class="ticket-content-wrapper">
+                                <div class="ticket-top-section">
+                                    <# if (card.card_number) { #>
+                                        <div class="ticket-badge"><span>{{{ card.card_number }}}</span></div>
+                                    <# } #>
+                                    <# if (card.title) { #>
+                                        <h3 class="ticket-title">{{{ card.title }}}</h3>
+                                    <# } #>
+                                </div>
+
+                                <div class="ticket-bottom-section">
+                                    <# if (card.description) { #>
+                                        <p class="ticket-desc">{{{ card.description }}}</p>
+                                    <# } #>
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-sparkles">
+                                <span class="sparkle s1">✦</span>
+                                <span class="sparkle s2">✦</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="ticket-stars">
-                        <span class="star star-1">+</span>
-                        <span class="star star-2">+</span>
-                    </div>
-                </div>
-            </{{{ linkTag }}}>
+                <# }); #>
+            </div>
         </div>
         <?php
     }

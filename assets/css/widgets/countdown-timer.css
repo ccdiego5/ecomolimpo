@@ -1,0 +1,67 @@
+/* ================================
+   COUNTDOWN TIMER WIDGET
+   ================================ */
+
+.ecomolimpo-countdown-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style: Inline */
+.ecomolimpo-countdown-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ecomolimpo-countdown-prefix-inline {
+    display: inline-block;
+}
+
+.ecomolimpo-countdown-time-inline {
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Style: Boxes */
+.ecomolimpo-countdown-prefix {
+    display: block;
+    width: 100%;
+}
+
+.ecomolimpo-countdown-timer {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ecomolimpo-countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+}
+
+.ecomolimpo-countdown-number {
+    display: block;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.ecomolimpo-countdown-label {
+    display: block;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+
+.ecomolimpo-countdown-separator {
+    display: inline-block;
+    line-height: 1;
+    font-weight: bold;
+    align-self: center;
+}

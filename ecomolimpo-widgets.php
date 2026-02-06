@@ -3,7 +3,7 @@
  * Plugin Name: Ecomolimpo Widgets
  * Plugin URI: https://ecomolimpo.com
  * Description: Colección de widgets personalizados para Elementor - Ecomolimpo
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Diego Cárdenas
  * Author URI: https://ecomolimpo.com
  * License: GPL-2.0+
@@ -31,7 +31,7 @@ final class Ecomolimpo_Widgets {
     /**
      * Plugin Version
      */
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
 
     /**
      * Minimum Elementor Version
@@ -211,13 +211,53 @@ final class Ecomolimpo_Widgets {
      * Widget Styles
      */
     public function widget_styles() {
-        wp_register_style(
-            'ecomolimpo-widgets',
-            plugins_url('assets/css/ecomolimpo-widgets.css', __FILE__),
+        // Variables globales
+        wp_enqueue_style(
+            'ecomolimpo-variables',
+            plugins_url('assets/css/widgets/variables.css', __FILE__),
             [],
             self::VERSION
         );
-        wp_enqueue_style('ecomolimpo-widgets');
+
+        // Countdown Timer
+        wp_enqueue_style(
+            'ecomolimpo-countdown-timer',
+            plugins_url('assets/css/widgets/countdown-timer.css', __FILE__),
+            [],
+            self::VERSION
+        );
+
+        // Live Event
+        wp_enqueue_style(
+            'ecomolimpo-live-event',
+            plugins_url('assets/css/widgets/live-event.css', __FILE__),
+            [],
+            self::VERSION
+        );
+
+        // Video Player
+        wp_enqueue_style(
+            'ecomolimpo-video-player',
+            plugins_url('assets/css/widgets/video-player.css', __FILE__),
+            [],
+            self::VERSION
+        );
+
+        // Animated Button
+        wp_enqueue_style(
+            'ecomolimpo-button-animated',
+            plugins_url('assets/css/widgets/button-animated.css', __FILE__),
+            [],
+            self::VERSION
+        );
+
+        // Ticket Card
+        wp_enqueue_style(
+            'ecomolimpo-ticket-card',
+            plugins_url('assets/css/widgets/ticket-card.css', __FILE__),
+            [],
+            self::VERSION
+        );
     }
 
     /**
