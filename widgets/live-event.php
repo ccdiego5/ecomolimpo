@@ -77,6 +77,32 @@ class Ecomolimpo_Live_Event_Widget extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'width_type',
+            [
+                'label' => esc_html__('Ancho del Contenedor', 'ecomolimpo-widgets'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'full',
+                'options' => [
+                    'full' => esc_html__('Ancho Completo (100%)', 'ecomolimpo-widgets'),
+                    'fit' => esc_html__('Ajustar al Contenido (Pill)', 'ecomolimpo-widgets'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'preset_style',
+            [
+                'label' => esc_html__('Estilo Predefinido', 'ecomolimpo-widgets'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'none',
+                'options' => [
+                    'none' => esc_html__('Ninguno (Personalizado)', 'ecomolimpo-widgets'),
+                    'gradient_pill' => esc_html__('Pill Gradient (Original)', 'ecomolimpo-widgets'),
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         // Style Section - Container
@@ -311,8 +337,16 @@ class Ecomolimpo_Live_Event_Widget extends \Elementor\Widget_Base {
         $dot_animation = $settings['dot_animation'] === 'yes';
         
         $dot_class = $dot_animation ? 'live-dot animate' : 'live-dot';
+        
+        $container_classes = 'ecomolimpo-live-event';
+        if ($settings['width_type'] === 'fit') {
+            $container_classes .= ' width-fit';
+        }
+        if ($settings['preset_style'] === 'gradient_pill') {
+            $container_classes .= ' preset-gradient-pill';
+        }
         ?>
-        <div class="ecomolimpo-live-event">
+        <div class="<?php echo esc_attr($container_classes); ?>">
             <?php if ($show_dot) : ?>
                 <span class="<?php echo esc_attr($dot_class); ?>"></span>
             <?php endif; ?>
@@ -332,8 +366,16 @@ class Ecomolimpo_Live_Event_Widget extends \Elementor\Widget_Base {
         var eventText = settings.event_text || '';
         var dotAnimation = settings.dot_animation === 'yes';
         var dotClass = dotAnimation ? 'live-dot animate' : 'live-dot';
+        
+        var containerClasses = 'ecomolimpo-live-event';
+        if (settings.width_type === 'fit') {
+            containerClasses += ' width-fit';
+        }
+        if (settings.preset_style === 'gradient_pill') {
+            containerClasses += ' preset-gradient-pill';
+        }
         #>
-        <div class="ecomolimpo-live-event">
+        <div class="{{ containerClasses }}">
             <# if (showDot) { #>
                 <span class="{{{ dotClass }}}"></span>
             <# } #>

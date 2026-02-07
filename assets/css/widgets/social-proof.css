@@ -5,7 +5,24 @@
 .ecomolimpo-social-proof-wrapper {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Force single line */
+    white-space: nowrap; /* Keep text on same line if possible */
+    max-width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll if it barely fits */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
+    .ecomolimpo-social-proof-wrapper {
+        justify-content: center; /* Center content on mobile */
+    }
+    
+    .ecomolimpo-social-text {
+        white-space: normal; /* Allow text to wrap naturally if it really doesn't fit, but try to keep it tight */
+        text-align: left;
+        font-size: 12px; /* Reduce font size on mobile to help fit */
+        line-height: 1.1;
+    }
 }
 
 .ecomolimpo-social-avatars {

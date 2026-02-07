@@ -31,7 +31,7 @@ final class Ecomolimpo_Widgets {
     /**
      * Plugin Version
      */
-    const VERSION = '1.2.2';
+    const VERSION = '1.2.7';
 
     /**
      * Minimum Elementor Version
@@ -283,6 +283,14 @@ final class Ecomolimpo_Widgets {
         wp_enqueue_style(
             'ecomolimpo-faq-accordion',
             plugins_url('assets/css/widgets/faq-accordion.css', __FILE__),
+            [],
+            self::VERSION
+        );
+
+        // Utilities (Glass Navbar, etc.)
+        wp_enqueue_style(
+            'ecomolimpo-utilities',
+            plugins_url('assets/css/widgets/utilities.css', __FILE__),
             [],
             self::VERSION
         );
