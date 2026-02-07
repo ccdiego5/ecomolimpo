@@ -1,0 +1,18 @@
+/* ================================
+   UTILITIES & HELPERS
+   ================================ */
+
+/* Glass Navbar Effect */
+.glass-navbar {
+    background-color: rgba(15, 15, 15, 0.6) !important; /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(12px) !important; /* Desenfoque suave */
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; /* Borde sutil */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Hover effect opcional (más sólido al pasar el mouse) */
+.glass-navbar:hover {
+    background-color: rgba(15, 15, 15, 0.8) !important;
+}

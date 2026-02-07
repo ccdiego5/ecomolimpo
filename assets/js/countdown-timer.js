@@ -70,15 +70,22 @@
         }
 
         startCountdown(endTime) {
+            // Clear any existing interval to prevent duplicates
+            if (this.intervalId) {
+                clearInterval(this.intervalId);
+            }
+
             const updateTimer = () => {
                 const now = Date.now();
                 const timeLeft = endTime - now;
 
-                if (timeLeft <= 0) {
+                if (timeLeft < 1000) { // Less than 1 second left
                     // Time's up - create new countdown
+                    clearInterval(this.intervalId); // Stop current interval
+                    
                     const newEndTime = this.createNewCountdown();
                     this.saveEndTime(newEndTime);
-                    this.startCountdown(newEndTime);
+                    this.startCountdown(newEndTime); // Start new one
                     return;
                 }
 
@@ -96,7 +103,7 @@
             updateTimer();
 
             // Update every second
-            setInterval(updateTimer, 1000);
+            this.intervalId = setInterval(updateTimer, 1000);
         }
 
         updateDisplay(hours, minutes, seconds) {
@@ -132,7 +139,8 @@
     // Initialize on document ready
     $(window).on('elementor/frontend/init', function() {
         elementorFrontend.hooks.addAction('frontend/element_ready/ecomolimpo_countdown_timer.default', function($scope) {
-            const $timer = $scope.find('.ecomolimpo-countdown-timer');
+            // Check for both inline and box styles
+            const $timer = $scope.find('.ecomolimpo-countdown-timer, .ecomolimpo-countdown-inline');
             if ($timer.length > 0) {
                 new EcomolimpoCountdownTimer($timer[0]);
             }
@@ -141,7 +149,7 @@
 
     // Also initialize for non-Elementor contexts
     $(document).ready(function() {
-        $('.ecomolimpo-countdown-timer').each(function() {
+        $('.ecomolimpo-countdown-timer, .ecomolimpo-countdown-inline').each(function() {
             new EcomolimpoCountdownTimer(this);
         });
     });
